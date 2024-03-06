@@ -16,7 +16,9 @@ After training, you will get Encoder and Decoder models in
 ## Step 2 Downstream Gait Models
 Traing downstream gait models through original gait samples and generated samples by GaitApp_Generator
 
-GaitApp_GaitSet as a example
+GaitApp_GaitSet on CASIA-B as a example
+
+cd CASIA-B/GaitApp_GaitSet
 
 
 
