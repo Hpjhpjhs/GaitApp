@@ -1,0 +1,16 @@
+[2024-03-05 17:22:42] [INFO]: {'enable_float16': True, 'restore_ckpt_strict': True, 'restore_hint': 40000, 'save_name': 'GaitApp_GaitSet', 'eval_func': 'identification_all', 'sampler': {'batch_size': 8, 'sample_type': 'all_ordered', 'type': 'InferenceSampler', 'batch_shuffle': False, 'frames_all_limit': 720}, 'transform': [{'type': 'BaseSilTransform', 'img_w': 64}], 'metric': 'euc'}
+[2024-03-05 17:22:42] [INFO]: {'model': 'GaitApp_GaitSet', 'in_channels': [1, 32, 64, 128], 'SeparateFCs': {'in_channels': 128, 'out_channels': 256, 'parts_num': 62}, 'bin_num': [16, 8, 4, 2, 1], 'Encoder': {'in_channels': [1, 32, 64, 128]}, 'Decoder': {'in_channels': [128, 64, 32, 16, 8, 1]}}
+[2024-03-05 17:22:42] [INFO]: {'dataset_name': 'CASIA-B', 'dataset_root': '/home/panjian.huang/gait_data/CASIA-B-pkl/', 'num_workers': 1, 'dataset_partition': '/home/panjian.huang/GaitApp/GaitApp_GaitSet/datasets/CASIA-B/CASIA-B.json', 'remove_no_gallery': False, 'cache': False, 'test_dataset_name': 'CASIA-B'}
+[2024-03-05 17:22:42] [INFO]: -------- Test Pid List --------
+[2024-03-05 17:22:42] [INFO]: [075, 076, ..., 124]
+[2024-03-05 17:22:45] [INFO]: Restore Parameters from output/CASIA-B/GaitApp_GaitSet/GaitApp_GaitSet/checkpoints/GaitApp_GaitSet-40000.pt !!!
+[2024-03-05 17:22:47] [INFO]: Parameters Count: 3.05554M
+[2024-03-05 17:22:47] [INFO]: Model Initialization Finished!
+[2024-03-05 17:23:17] [INFO]: ===Rank-1 (Include identical-view cases)===
+[2024-03-05 17:23:17] [INFO]: NM: 96.463,	BG: 91.842,	CL: 80.107
+[2024-03-05 17:23:17] [INFO]: ===Rank-1 (Exclude identical-view cases)===
+[2024-03-05 17:23:17] [INFO]: NM: 96.109,	BG: 91.053,	CL: 78.773
+[2024-03-05 17:23:17] [INFO]: ===Rank-1 of each angle (Exclude identical-view cases)===
+[2024-03-05 17:23:17] [INFO]: NM: [93.30 98.90 99.30 97.90 95.10 93.10 96.20 99.00 99.00 98.20 87.20]
+[2024-03-05 17:23:17] [INFO]: BG: [86.80 94.60 95.80 92.93 88.80 84.30 88.70 93.60 97.20 95.45 83.40]
+[2024-03-05 17:23:17] [INFO]: CL: [73.90 84.80 86.60 83.00 76.30 74.10 76.10 80.40 84.70 81.20 65.40]
