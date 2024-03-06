@@ -19,6 +19,11 @@ Traing downstream gait models through original gait samples and generated sample
 GaitApp_GaitSet on CASIA-B as a example
 
 cd CASIA-B/GaitApp_GaitSet
+```
+bash train.sh
+```
+
+We build this project based on the open-source project [OpenGait](https://github.com/ShiqiYu/OpenGait).
 
 
 
