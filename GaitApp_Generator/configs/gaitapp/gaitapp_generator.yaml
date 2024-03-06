@@ -1,0 +1,98 @@
+# Note  : *** the batch_size should be [8, 16], the number of GPUs is 8, and the transform type is BaseSilTransform (64 x 64)!!! ***
+data_cfg:
+  dataset_name: CASIA-B
+  dataset_root: your path for CASIA-B 
+  dataset_partition: datasets/CASIA-B/CASIA-B.json
+  num_workers: 1
+  remove_no_gallery: false # Remove probe if no gallery for it
+  test_dataset_name: CASIA-B
+
+
+# ***There is no inference test !!! ***
+evaluator_cfg:
+  enable_float16: false
+  restore_ckpt_strict: true
+  restore_hint: 20000
+  save_name: GaitApp_Generator
+  sampler:
+    batch_size: 16
+    sample_type: all_ordered
+    type: InferenceSampler
+  metric: euc # cos
+  transform:
+    - type: BaseSilTransform
+      img_w: 64
+
+
+loss_cfg:
+  - loss_term_weight: 1.0
+    type: Recon_Loss
+    log_prefix: branch_1_img_recon
+  - loss_term_weight: 1.0
+    type: Recon_Loss
+    log_prefix: branch_2_pose_sim
+  - loss_term_weight: 1.0
+    type: Recon_Loss
+    log_prefix: branch_3_cl_gei
+  - loss_term_weight: 1.0
+    type: Recon_Loss
+    log_prefix: branch_3_nm_gei   
+  - loss_term_weight: 1.0
+    type: Recon_Loss
+    log_prefix: branch_4_recycle
+  - loss_term_weight: 0.1
+    type: InfoNCE
+    log_prefix: branch_5_id
+
+
+model_cfg:
+  model: GaitApp_Generator
+  Encoder:
+    in_channels:
+      - 1
+      - 32
+      - 64
+      - 128
+  Decoder:
+    in_channels:
+      - 128
+      - 64
+      - 32
+      - 16
+      - 8
+      - 1
+
+
+optimizer_cfg:
+  lr: 1.0e-4
+  solver: Adam
+  weight_decay: 5.0e-4
+
+scheduler_cfg:
+  gamma: 0.1
+  milestones:
+    - 10000
+  scheduler: MultiStepLR
+
+trainer_cfg:
+  enable_float16: true
+  log_iter: 100
+  with_test: false
+  restore_ckpt_strict: true
+  restore_hint: 0
+  save_iter: 20000
+  save_name: GaitApp_Generator
+  sync_BN: true
+  total_iter: 20000
+  sampler:
+    batch_shuffle: false
+    batch_size:
+      - 8
+      - 16
+    frames_num_fixed: 30
+    frames_skip_num: 0
+    sample_type: fixed_ordered
+    type: GeneratorSampler
+  transform:
+    - type: BaseSilTransform
+      img_w: 64
