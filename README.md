@@ -1,5 +1,5 @@
 # GaitApp
-Integral Pose Learning via Appearance Transfer for Gait Recognition
+Official code for "Integral Pose Learning via Appearance Transfer for Gait Recognition" (IEEE TIFS 2024).
 
 ## Step 1 GaitApp_Generator
 Training GaitApp_Generator on CASIA-B
@@ -24,6 +24,3 @@ bash train.sh
 ```
 
 We build this project based on the open-source project [OpenGait](https://github.com/ShiqiYu/OpenGait).
-
-
-
